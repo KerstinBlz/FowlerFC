@@ -3,10 +3,12 @@ public class Movie {
     public static final int REGULAR = 0;
     public static final int NEW_RELEASE = 1;
     private String title;
+    
     private int priceCode;
+    
     public Movie(String newtitle, int newpriceCode) {
         title = newtitle;
-        priceCode = newpriceCode;
+        setPriceCode(priceCode);       
     }
     public int getPriceCode() {
         return priceCode;
@@ -43,4 +45,33 @@ public class Movie {
     	else
     		return 1;
     }
+
+    abstract class Price 
+    {
+    	abstract int getPriceCode();
+    }
+    
+	class ChildrensPrice extends Price 
+	{
+		int getPriceCode() 
+		{
+			return Movie.CHILDRENS;
+		}
+	}
+	
+	class NewReleasePrice extends Price 
+	{
+		int getPriceCode() 
+		{
+			return Movie.NEW_RELEASE;
+		}
+	}
+	
+	class RegularPrice extends Price 
+	{
+		int getPriceCode() 
+		{
+			return Movie.REGULAR;
+		}
+	}
 }
